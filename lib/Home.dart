@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/CustomSearchDelegate.dart';
 import 'package:youtube/telas/Biblioteca.dart';
 import 'package:youtube/telas/EmAlta.dart';
 import 'package:youtube/telas/Inicio.dart';
@@ -35,16 +36,17 @@ class _HomeState extends State<Home> {
           height: 22,
         ),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.videocam),
-              onPressed: (){
-                print("acao: videocam");
-              }
-          ),
+
           IconButton(
               icon: Icon(Icons.search),
               onPressed: (){
-                print("acao: pesquisa");
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              }
+          ),
+          /*IconButton(
+              icon: Icon(Icons.videocam),
+              onPressed: (){
+                print("acao: videocam");
               }
           ),
           IconButton(
@@ -52,10 +54,13 @@ class _HomeState extends State<Home> {
               onPressed: (){
                 print("acao: conta");
               }
-          ),
+          ),*/
         ],
       ),
-      body: telas[_indiceAtual],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_indiceAtual],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,
         onTap: (indice){
